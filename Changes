@@ -1,11 +1,20 @@
 Revision history for Perl extension Tree::Simple::VisitorFactory:
 
-0.12  Fri Nov  1 09:23:00 2013
+0.13  2016-04-25T09:26:00
+	- No code changes.
+	- Fix my licence (sic) mess so all references are to Perl. This involves edits to Makefile.PL
+		and LICENSE. See RT#113949. Thanx Kent Fredric.
+	- Fix Makefile.PL so modules only used for testing are in TEST_REQUIRES and not PREREQ_PM.
+		See RT#113948. Thanx Kent Fredric.
+	- Fix README so it more-or-less conforms to the Perl Foundation's guidelines at
+		http://www.perlfoundation.org/cpan_licensing_guidelines.
+
+0.12  2013-11-01T09:23:00
 	- Update pre-reqs.
 	- Many, many doc typo fixes via github from dsteinbrunner.
 	- Add repos to Build.PL and Makefile.PL.
 
-0.11  Mon Sep 23 11:07:00 2013
+0.11  2013-09-23T11:07:00
 	- Maintenance now by Ron Savage.
 	- Rectify datestamp format in this file.
 	- Add Changelog.ini.
@@ -13,34 +22,34 @@ Revision history for Perl extension Tree::Simple::VisitorFactory:
 	- Clean up Makefile.PL.
 	- RT#40504: Add META.*.
 
-0.10  Fri Nov 25 12:00:00 2005
+0.10  2005-11-25T12:00:00
     - removing OS X resource fork files which are causeing
       the pod test to fail
 
-0.09  Mon Nov  7 12:00:00 2005
+0.09  2005-11-07T12:00:00
     - fixing an error in the Tree::Simple::Visitor::LoadDirectoryTree test
 
-0.08  Mon Jul 18 12:00:00 2005
+0.08  2005-07-18T12:00:00
     - small bug fix in Tree::Simple::Visitor::VariableDepthClone visitor
     - small bug fix with Tree::Simple::Visitor::FindByPath visitor
 
-0.07  Mon Jul 18 12:00:00 2005
+0.07  2005-07-18T12:00:00
     - forgot to implement the node filter in the
       Tree::Simple::Visitor::VariableDepthClone visitor
         - added this code and tested it
 
-0.06  Wed Jul 13 12:00:00 2005
+0.06  2005-07-13T12:00:00
     - added Tree::Simple::Visitor::VariableDepthClone
         - added tests and docs for this
         - bumped up the Tree::Simple version requirement to
           support this new Visitor
 
-0.05  Thu Nov 18 12:00:00 2004
+0.05  2004-11-18T12:00:00
     - now using Scalar::Util::blessed() instead of
       the convoluted UNIVERSAL::isa() stuff.
       - added Scalar::Util as a dependency
 
-0.04  Wed Oct 27 12:00:00 2004
+0.04  2004-10-27T12:00:00
     - fixed broken test (70_Tree_Simple_Visitor_LoadDirectoryTree_test.t)
       it made assumptions about directory ordering across OSes which was
       not correct.
@@ -48,7 +57,7 @@ Revision history for Perl extension Tree::Simple::VisitorFactory:
         - added tests for this
         - added docs for this
 
-0.03  Tue Oct 12 12:00:00 2004
+0.03  2004-10-12T12:00:00
 	- fixed documentation in Tree::Simple::Visitor::Sort
     - added Tree::Simple::Visitor::LoadClassHierarchy
         - added tests for this
@@ -57,7 +66,7 @@ Revision history for Perl extension Tree::Simple::VisitorFactory:
       so that it sorts the hash keys before they are put
       into the tree
 
-0.02  Wed Sep 29 12:00:00 2004
+0.02  2004-09-29T12:00:00
     - changed all Visitors to use 'base' for
       inheritance, it just cuts down on the
       line noise.
@@ -83,5 +92,5 @@ Revision history for Perl extension Tree::Simple::VisitorFactory:
         - added tests for these
     - added the pod.t and pod_coverage.t tests
 
-0.01  Wed Jun 23 09:24:07 2004
+0.01  2004-06-23T09:24:07
     - module created
