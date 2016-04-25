@@ -21,7 +21,7 @@ my(%params) =
 		COMPRESS => 'gzip',
 		SUFFIX   => 'gz'
 	},
-	DISTNAME  => 'Tree-Simple',
+	DISTNAME  => 'Tree-Simple-VisitorFactory',
 	NAME         => 'Tree::Simple::VisitorFactory',
 	PL_FILES  => {},
 	PREREQ_PM    =>
