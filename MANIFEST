@@ -18,8 +18,10 @@ lib/Tree/Simple/Visitor/ToNestedArray.pm
 lib/Tree/Simple/Visitor/ToNestedHash.pm
 lib/Tree/Simple/Visitor/VariableDepthClone.pm
 lib/Tree/Simple/VisitorFactory.pm
+LICENSE
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 META.json
 META.yml
 README

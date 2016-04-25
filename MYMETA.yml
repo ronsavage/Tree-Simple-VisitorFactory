@@ -4,6 +4,8 @@ author:
   - 'Stevan Little <stevan@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: '0'
+  Test::Exception: '0.15'
+  Test::More: '1.001014'
 configure_requires:
   ExtUtils::MakeMaker: '0'
 dynamic_config: 0
@@ -71,11 +73,9 @@ provides:
 requires:
   File::Spec: '0.6'
   Scalar::Util: '1.1'
-  Test::Exception: '0.15'
-  Test::More: '1.001014'
   Tree::Simple: '1.12'
   Tree::Simple::Visitor: '1.22'
-  base: '2.16'
+  base: '0'
   strict: '0'
   warnings: '0'
 resources:
