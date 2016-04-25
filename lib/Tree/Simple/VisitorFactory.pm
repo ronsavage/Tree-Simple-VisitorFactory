@@ -217,6 +217,10 @@ stevan little, E<lt>stevan@iinteractive.comE<gt>
 
 Ron Savage E<lt>ron@savage.net.auE<gt> has taken over maintenance as of V 0.11.
 
+=head1 REPOSITORY
+
+L<https://github.com/ronsavage/Tree-Simple-VisitorFactory>.
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright 2004, 2005 by Infinity Interactive, Inc.
