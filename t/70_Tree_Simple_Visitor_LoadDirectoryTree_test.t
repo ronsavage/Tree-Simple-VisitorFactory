@@ -6,7 +6,7 @@ use warnings;
 use Test::More tests => 32;
 use Test::Exception;
 
-BEGIN { 
+BEGIN {
     use_ok('Tree::Simple::Visitor::LoadDirectoryTree');
     use_ok('Tree::Simple::Visitor::GetAllDescendents');
 }
@@ -18,6 +18,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
 
 my @normal = qw(
     Changes
+    Changelog.ini
     lib
         Tree
             Simple
@@ -27,21 +28,22 @@ my @normal = qw(
                     FindByPath.pm
                     FindByUID.pm
                     FindByNodeValue.pm
-                    FromNestedArray.pm                        
-                    FromNestedHash.pm                  
+                    FromNestedArray.pm
+                    FromNestedHash.pm
                     GetAllDescendents.pm
                     LoadClassHierarchy.pm
                     LoadDirectoryTree.pm
                     PathToRoot.pm
-                    PostOrderTraversal.pm 
-                    PreOrderTraversal.pm 
-                    Sort.pm 
+                    PostOrderTraversal.pm
+                    PreOrderTraversal.pm
+                    Sort.pm
                     ToNestedArray.pm
                     ToNestedHash.pm
                     VariableDepthClone.pm
-                VisitorFactory.pm   
+                VisitorFactory.pm
+    LICENSE
     Makefile.PL
-    MANIFEST
+    MANIFEST.SKIP
     README
     t
         10_Tree_Simple_VisitorFactory_test.t
@@ -58,12 +60,10 @@ my @normal = qw(
         80_Tree_Simple_Visitor_Sort_test.t
         90_Tree_Simple_Visitor_FromNestedHash_test.t
         91_Tree_Simple_Visitor_FromNestedArray_test.t
-        92_Tree_Simple_Visitor_ToNestedHash_test.t 
-        93_Tree_Simple_Visitor_ToNestedArray_test.t  
-        95_Tree_Simple_Visitor_LoadClassHierarchy_test.t 
-        96_Tree_Simple_Visitor_VariableDepthClone_test.t       
-    	pod.t
-    	pod_coverage.t
+        92_Tree_Simple_Visitor_ToNestedHash_test.t
+        93_Tree_Simple_Visitor_ToNestedArray_test.t
+        95_Tree_Simple_Visitor_LoadClassHierarchy_test.t
+        96_Tree_Simple_Visitor_VariableDepthClone_test.t
 );
 my %normal = map { $_ => undef } @normal;
 
@@ -81,24 +81,24 @@ my $node_filter = sub {
     my $visitor = Tree::Simple::Visitor::LoadDirectoryTree->new();
     isa_ok($visitor, 'Tree::Simple::Visitor::LoadDirectoryTree');
     isa_ok($visitor, 'Tree::Simple::Visitor');
-    
+
     # just examine the files in the MANIFEST
     # not the ones created by the makefile
     $visitor->setNodeFilter($node_filter);
-    
+
     $dir_tree->accept($visitor);
 
     my $visitor_check = Tree::Simple::Visitor::GetAllDescendents->new();
     isa_ok($visitor_check, 'Tree::Simple::Visitor::GetAllDescendents');
-    
+
     $dir_tree->accept($visitor_check);
-    
+
     # we have to sort these because different OSes
     # will return the results in different orders.
     is_deeply(
             [ sort $visitor_check->getResults() ],
             [ sort @normal ],
-            '... our tree is in the proper order'); 
+            '... our tree is in the proper order');
 }
 
 # file first order
@@ -109,43 +109,45 @@ my $node_filter = sub {
     my $visitor = Tree::Simple::Visitor::LoadDirectoryTree->new();
     isa_ok($visitor, 'Tree::Simple::Visitor::LoadDirectoryTree');
     isa_ok($visitor, 'Tree::Simple::Visitor');
-    
+
     # just examine the files in the MANIFEST
-    # not the ones created by the makefile 
+    # not the ones created by the makefile
     $visitor->setNodeFilter($node_filter);
-    
+
     can_ok($visitor, 'SORT_FILES_FIRST');
     $visitor->setSortStyle($visitor->SORT_FILES_FIRST);
-    
+
     $dir_tree->accept($visitor);
-    
+
     my @files_first = qw(
+        Changelog.ini
         Changes
+        LICENSE
         Makefile.PL
-        MANIFEST
-        README        
+        MANIFEST.SKIP
+        README
         lib
             Tree
                 Simple
-                    VisitorFactory.pm                  
+                    VisitorFactory.pm
                     Visitor
                         BreadthFirstTraversal.pm
                         CreateDirectoryTree.pm
                         FindByNodeValue.pm
-                        FindByPath.pm                        
+                        FindByPath.pm
                         FindByUID.pm
-                        FromNestedArray.pm                        
-                        FromNestedHash.pm                      
+                        FromNestedArray.pm
+                        FromNestedHash.pm
                         GetAllDescendents.pm
-                        LoadClassHierarchy.pm                        
+                        LoadClassHierarchy.pm
                         LoadDirectoryTree.pm
                         PathToRoot.pm
-                        PostOrderTraversal.pm    
-                        PreOrderTraversal.pm  
-                        Sort.pm  
+                        PostOrderTraversal.pm
+                        PreOrderTraversal.pm
+                        Sort.pm
                         ToNestedArray.pm
-                        ToNestedHash.pm 
-                        VariableDepthClone.pm                                           
+                        ToNestedHash.pm
+                        VariableDepthClone.pm
         t
             10_Tree_Simple_VisitorFactory_test.t
         	20_Tree_Simple_Visitor_PathToRoot_test.t
@@ -160,24 +162,22 @@ my $node_filter = sub {
             75_Tree_Simple_Visitor_CreateDirectoryTree_test.t
             80_Tree_Simple_Visitor_Sort_test.t
             90_Tree_Simple_Visitor_FromNestedHash_test.t
-            91_Tree_Simple_Visitor_FromNestedArray_test.t 
-            92_Tree_Simple_Visitor_ToNestedHash_test.t 
-            93_Tree_Simple_Visitor_ToNestedArray_test.t  
-            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t        
-            96_Tree_Simple_Visitor_VariableDepthClone_test.t 
-        	pod.t
-        	pod_coverage.t
-    );    
+            91_Tree_Simple_Visitor_FromNestedArray_test.t
+            92_Tree_Simple_Visitor_ToNestedHash_test.t
+            93_Tree_Simple_Visitor_ToNestedArray_test.t
+            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t
+            96_Tree_Simple_Visitor_VariableDepthClone_test.t
+    );
 
     my $visitor_check = Tree::Simple::Visitor::GetAllDescendents->new();
     isa_ok($visitor_check, 'Tree::Simple::Visitor::GetAllDescendents');
-    
+
     $dir_tree->accept($visitor_check);
-        
+
     is_deeply(
             [ $visitor_check->getResults() ],
-            \@files_first,            
-            '... our tree is in the file first order'); 
+            \@files_first,
+            '... our tree is in the file first order');
 }
 
 
@@ -189,39 +189,39 @@ my $node_filter = sub {
     my $visitor = Tree::Simple::Visitor::LoadDirectoryTree->new();
     isa_ok($visitor, 'Tree::Simple::Visitor::LoadDirectoryTree');
     isa_ok($visitor, 'Tree::Simple::Visitor');
-    
+
     # just examine the files in the MANIFEST
-    # not the ones created by the makefile   
+    # not the ones created by the makefile
     $visitor->setNodeFilter($node_filter);
-    
+
     can_ok($visitor, 'SORT_DIRS_FIRST');
     $visitor->setSortStyle($visitor->SORT_DIRS_FIRST);
-    
+
     $dir_tree->accept($visitor);
-    
-    my @dirs_first = qw(       
+
+    my @dirs_first = qw(
         lib
             Tree
                 Simple
                     Visitor
                         BreadthFirstTraversal.pm
                         CreateDirectoryTree.pm
-                        FindByNodeValue.pm                        
+                        FindByNodeValue.pm
                         FindByPath.pm
                         FindByUID.pm
-                        FromNestedArray.pm                        
-                        FromNestedHash.pm                        
+                        FromNestedArray.pm
+                        FromNestedHash.pm
                         GetAllDescendents.pm
-                        LoadClassHierarchy.pm                        
+                        LoadClassHierarchy.pm
                         LoadDirectoryTree.pm
                         PathToRoot.pm
-                        PostOrderTraversal.pm   
-                        PreOrderTraversal.pm 
-                        Sort.pm        
+                        PostOrderTraversal.pm
+                        PreOrderTraversal.pm
+                        Sort.pm
                         ToNestedArray.pm
-                        ToNestedHash.pm   
-                        VariableDepthClone.pm                                    
-                    VisitorFactory.pm   
+                        ToNestedHash.pm
+                        VariableDepthClone.pm
+                    VisitorFactory.pm
         t
             10_Tree_Simple_VisitorFactory_test.t
         	20_Tree_Simple_Visitor_PathToRoot_test.t
@@ -236,28 +236,28 @@ my $node_filter = sub {
             75_Tree_Simple_Visitor_CreateDirectoryTree_test.t
             80_Tree_Simple_Visitor_Sort_test.t
             90_Tree_Simple_Visitor_FromNestedHash_test.t
-            91_Tree_Simple_Visitor_FromNestedArray_test.t   
-            92_Tree_Simple_Visitor_ToNestedHash_test.t 
-            93_Tree_Simple_Visitor_ToNestedArray_test.t   
-            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t     
-            96_Tree_Simple_Visitor_VariableDepthClone_test.t               
-        	pod.t
-        	pod_coverage.t  
+            91_Tree_Simple_Visitor_FromNestedArray_test.t
+            92_Tree_Simple_Visitor_ToNestedHash_test.t
+            93_Tree_Simple_Visitor_ToNestedArray_test.t
+            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t
+            96_Tree_Simple_Visitor_VariableDepthClone_test.t
+        Changelog.ini
         Changes
+        LICENSE
         Makefile.PL
-        MANIFEST
-        README                             
+        MANIFEST.SKIP
+        README
     );
 
     my $visitor_check = Tree::Simple::Visitor::GetAllDescendents->new();
     isa_ok($visitor_check, 'Tree::Simple::Visitor::GetAllDescendents');
-    
+
     $dir_tree->accept($visitor_check);
-        
+
     is_deeply(
             [ $visitor_check->getResults() ],
             \@dirs_first,
-            '... our tree is in the dir first order'); 
+            '... our tree is in the dir first order');
 }
 
 # test the errors
@@ -265,48 +265,48 @@ my $node_filter = sub {
     my $visitor = Tree::Simple::Visitor::LoadDirectoryTree->new();
     isa_ok($visitor, 'Tree::Simple::Visitor::LoadDirectoryTree');
     isa_ok($visitor, 'Tree::Simple::Visitor');
-    
+
     # check setSortStyle
     can_ok($visitor, 'setSortStyle');
     throws_ok {
         $visitor->setSortStyle();
     } qr/Insufficient Arguments/, '... got the error we expected';
-    
+
     throws_ok {
         $visitor->setSortStyle("Fail");
-    } qr/Insufficient Arguments/, '... got the error we expected';    
-    
+    } qr/Insufficient Arguments/, '... got the error we expected';
+
     throws_ok {
         $visitor->setSortStyle([]);
-    } qr/Insufficient Arguments/, '... got the error we expected'; 
-    
+    } qr/Insufficient Arguments/, '... got the error we expected';
+
     # check visit
     throws_ok {
         $visitor->visit();
-    } qr/Insufficient Arguments/, '... got the error we expected';  
-    
+    } qr/Insufficient Arguments/, '... got the error we expected';
+
     throws_ok {
         $visitor->visit("Fail");
-    } qr/Insufficient Arguments/, '... got the error we expected';                           
+    } qr/Insufficient Arguments/, '... got the error we expected';
 
     throws_ok {
         $visitor->visit([]);
-    } qr/Insufficient Arguments/, '... got the error we expected'; 
-    
+    } qr/Insufficient Arguments/, '... got the error we expected';
+
     throws_ok {
         $visitor->visit(bless({}, "Fail"));
-    } qr/Insufficient Arguments/, '... got the error we expected';     
-    
+    } qr/Insufficient Arguments/, '... got the error we expected';
+
     # check that tree is a leaf
-    
+
     my $tree = Tree::Simple->new("test")->addChild(Tree::Simple->new("test 2"));
-    
+
     throws_ok {
         $visitor->visit($tree);
-    } qr/Illegal Operation/, '... got the error we expected';    
-    
+    } qr/Illegal Operation/, '... got the error we expected';
+
     throws_ok {
         $visitor->visit($tree->getChild(0));
-    } qr/Incorrect Type/, '... got the error we expected';        
-                
+    } qr/Incorrect Type/, '... got the error we expected';
+
 }
