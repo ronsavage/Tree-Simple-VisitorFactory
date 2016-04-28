@@ -1,5 +1,10 @@
 Revision history for Perl extension Tree::Simple::VisitorFactory:
 
+0.14  2016-04-27T17:35:00
+	- No code changes.
+	- Adopt workflow techniques suggested by Kent Fredric. This means a cleaner workdir and a
+		much more reliable dist. The latter now has auto-generated MANIFEST and META.* files.
+
 0.13  2016-04-25T09:26:00
 	- No code changes.
 	- Delete Build.PL.
