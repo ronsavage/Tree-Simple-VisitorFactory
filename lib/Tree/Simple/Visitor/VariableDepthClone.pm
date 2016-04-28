@@ -5,7 +5,7 @@ use warnings;
 
 use Scalar::Util 'blessed';
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 use base qw(Tree::Simple::Visitor);
 
