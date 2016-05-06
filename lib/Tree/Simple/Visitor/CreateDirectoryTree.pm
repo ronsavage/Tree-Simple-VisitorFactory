@@ -91,7 +91,7 @@ Tree::Simple::Visitor::CreateDirectoryTree - A Visitor for create a set of direc
   use Tree::Simple::Visitor::CreateDirectoryTree;
 
   # create a Tree::Simple object which
-  # represents a directory heirarchy
+  # represents a directory hierarchy
   my $tree = Tree::Simple->new("www/")
                     ->addChildren(
                         Tree::Simple->new("conf/")
