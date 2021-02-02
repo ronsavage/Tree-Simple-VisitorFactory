@@ -3,7 +3,7 @@ package Tree::Simple::Visitor::FindByPath;
 use strict;
 use warnings;
 
-our $VERSION = '1.16';
+our $VERSION = '0.16';
 
 use Scalar::Util qw(blessed);
 

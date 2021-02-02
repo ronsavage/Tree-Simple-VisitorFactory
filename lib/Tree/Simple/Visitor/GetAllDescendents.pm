@@ -3,7 +3,7 @@ package Tree::Simple::Visitor::GetAllDescendents;
 use strict;
 use warnings;
 
-our $VERSION = '1.16';
+our $VERSION = '0.16';
 
 use Scalar::Util qw(blessed);
 

@@ -3,7 +3,7 @@ package Tree::Simple::VisitorFactory;
 use strict;
 use warnings;
 
-our $VERSION = '1.16';
+our $VERSION = '0.16';
 
 sub new {
     my ($class) = @_;

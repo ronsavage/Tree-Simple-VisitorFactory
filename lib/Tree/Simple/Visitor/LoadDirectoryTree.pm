@@ -3,7 +3,7 @@ package Tree::Simple::Visitor::LoadDirectoryTree;
 use strict;
 use warnings;
 
-our $VERSION = '1.16';
+our $VERSION = '0.16';
 
 use File::Spec;
 use Scalar::Util qw(blessed);
